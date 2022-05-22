@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogIn"
+    android:orientation="vertical"
+    android:gravity="center_vertical|center_horizontal">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvemail2"
+        android:text="@string/e_mail"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etemail2"
+        android:textAlignment="center"
+        android:hint="@string/et_email"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvpasswd2"
+        android:text="@string/passwd"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etpasswd2"
+        android:textAlignment="center"
+        android:hint="@string/etpasswd"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvnombre"
+        android:text="@string/nombre"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etnombre"
+        android:textAlignment="center"
+        android:hint="@string/etnombre"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvapellidos"
+        android:text="@string/apellidos"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etapellidos"
+        android:textAlignment="center"
+        android:hint="@string/etapellidos"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRegister2"
+        android:text="@string/register"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/design_default_color_primary"
+        android:id="@+id/btnVolver"
+        android:text="@string/volver"/>
+
+</LinearLayout>

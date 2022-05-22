@@ -7,4 +7,9 @@
     <string name="login">LogIn</string>
     <string name="register">Register</string>
     <string name="tvBienvenida">Hola, has conseguido ingresar a la aplicación</string>
+    <string name="nombre">Nombre</string>
+    <string name="etnombre">Introduce tu nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="etapellidos">Introduce tus apellidos</string>
+    <string name="volver">Volver</string>
 </resources>

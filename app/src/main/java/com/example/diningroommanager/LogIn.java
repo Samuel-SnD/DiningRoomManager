@@ -46,5 +46,10 @@ public class LogIn extends AppCompatActivity {
             };
         });
 
+        Button btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(v -> {
+            Intent it = new Intent(getApplicationContext(), Register.class);
+            startActivity(it);
+        });
     }
 }
