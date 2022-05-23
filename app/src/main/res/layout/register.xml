@@ -22,6 +22,8 @@
         android:id="@+id/etemail2"
         android:textAlignment="center"
         android:hint="@string/et_email"
+        android:inputType="textEmailAddress"
+        android:imeOptions="actionNext"
         android:layout_marginBottom="20dp"/>
 
     <TextView
@@ -37,6 +39,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/etpasswd2"
         android:textAlignment="center"
+        android:inputType="textPassword"
+        android:imeOptions="actionNext"
         android:hint="@string/etpasswd"/>
 
     <TextView
@@ -52,6 +56,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/etnombre"
         android:textAlignment="center"
+        android:inputType="text"
+        android:imeOptions="actionNext"
         android:hint="@string/etnombre"/>
 
     <TextView
@@ -67,7 +73,28 @@
         android:layout_height="wrap_content"
         android:id="@+id/etapellidos"
         android:textAlignment="center"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         android:hint="@string/etapellidos"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cbacceptcredentials"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="-15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cbacceptcredentials"
+            android:id="@+id/tvacceptcredentials"/>
+
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="180dp"

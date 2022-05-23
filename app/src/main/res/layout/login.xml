@@ -22,6 +22,7 @@
         android:id="@+id/etemail"
         android:textAlignment="center"
         android:hint="@string/et_email"
+        android:inputType="textEmailAddress"
         android:layout_marginBottom="20dp"/>
 
     <TextView
@@ -30,6 +31,7 @@
         android:id="@+id/tvpasswd"
         android:text="@string/passwd"
         android:textAlignment="center"
+        android:imeOptions="actionNext"
         android:layout_marginBottom="10dp"/>
 
     <EditText
@@ -37,6 +39,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/etpasswd"
         android:textAlignment="center"
+        android:inputType="textPassword"
+        android:imeOptions="actionDone"
         android:hint="@string/etpasswd"/>
 
     <com.google.android.material.button.MaterialButton
