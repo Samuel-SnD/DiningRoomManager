@@ -9,4 +9,8 @@ public class Token implements Serializable {
 
     @SerializedName("token_type")
     String tokenType;
+
+    public String getAccessToken() {
+        return accessToken;
+    }
 }

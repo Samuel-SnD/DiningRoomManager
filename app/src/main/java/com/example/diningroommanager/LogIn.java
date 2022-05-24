@@ -35,6 +35,7 @@ public class LogIn extends AppCompatActivity {
                         .asJson();
                 if (res.getStatus() == 200) {
                     Token tk = new Gson().fromJson(res.getBody().toString(), Token.class);
+                    Session.getInstance().tk = tk;
                     Intent it = new Intent(getApplicationContext(), MainScreen.class);
                     it.putExtra("Token", tk);
                     startActivity(it);

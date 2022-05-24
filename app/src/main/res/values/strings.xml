@@ -6,7 +6,7 @@
     <string name="etpasswd">Introduce tu contraseña</string>
     <string name="login">LogIn</string>
     <string name="register">Register</string>
-    <string name="tvBienvenida">Hola, has conseguido ingresar a la aplicación</string>
+    <string name="tvBienvenida">Hola %s, has conseguido ingresar a la aplicación</string>
     <string name="nombre">Nombre</string>
     <string name="etnombre">Introduce tu nombre</string>
     <string name="apellidos">Apellidos</string>
@@ -43,5 +43,11 @@
                     públicamente o ponerlos a disposición de terceros cuando ello conlleve su reproducción.\n \n
                 c) Extraer o reutilizar todo o parte sustancial de los contenidos integrantes de la APP.
     </string>
+    <string name="eliminar_reserva">Eliminar reserva</string>
+    <string name="generar_alerta_cv19">Generar alerta COVID-19</string>
+    <string name="ver_reservas">Ver reservas</string>
+    <string name="crear_nueva_mesa">Crear nueva mesa</string>
+    <string name="eliminar_mesa">Eliminar mesa</string>
+    <string name="menu">Menu</string>
 
 </resources>
