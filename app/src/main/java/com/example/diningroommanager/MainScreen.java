@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.CalendarContract;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diningroommanager.mapping.Comedor;
+import com.example.diningroommanager.mapping.Mesa;
 import com.example.diningroommanager.mapping.Token;
 import com.example.diningroommanager.mapping.Usuario;
 import com.google.gson.reflect.TypeToken;
@@ -39,8 +41,11 @@ import unirest.shaded.com.google.gson.Gson;
 
 public class MainScreen extends AppCompatActivity {
 
+    static Comedor currentComedor = new Comedor();
     Usuario user;
     ArrayList <String> comedoresId = new ArrayList <String> ();
+    static ArrayList <Mesa> arrMesas = new ArrayList <Mesa> ();
+    static Spinner spinner;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -52,8 +57,6 @@ public class MainScreen extends AppCompatActivity {
                 .header("accept", "Application/json")
                 .asJson();
         user = new Gson().fromJson(res.getBody().toString(), Usuario.class);
-        TextView tvMainScreen = findViewById(R.id.tvBienvenida);
-        tvMainScreen.setText(String.format(tvMainScreen.getText().toString(), user.getNombre()));
 
         HttpResponse res2 = Unirest.get("http://diningroommanager.live:8000/comedores")
                 .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
@@ -65,14 +68,48 @@ public class MainScreen extends AppCompatActivity {
             comedoresId.add("Comedor: " + comedor.getId());
         });
 
-        // String[] comedorId = new String[comedoresId.size()];
-        // comedoresId.toArray(comedorId);
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerComedor);
+        spinner = findViewById(R.id.spinnerComedor);
         ArrayAdapter <String> adapter = new ArrayAdapter <String> (this, android.R.layout.simple_spinner_dropdown_item, comedoresId);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        ListView lvmainScreen = findViewById(R.id.lvmainScreen);
+        ListAdapter lAdapter = new ListAdapter(getApplicationContext(), arrMesas);
+        lvmainScreen.setAdapter(lAdapter);
+        registerForContextMenu(lvmainScreen);
+
+        updateArrayMesas();
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                lvmainScreen.invalidateViews();
+                updateArrayMesas();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void updateArrayMesas () {
+        currentComedor.setId(Integer.parseInt(spinner.getSelectedItem().toString().substring(9)));
+
+        HttpResponse res3 = Unirest.get("http://diningroommanager.live:8000/mesas/")
+                .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                .header("accept", "Application/json")
+                .queryString("comedor_id", currentComedor.getId())
+                .asJson();
+
+        ArrayList <Mesa> mesas = new Gson().fromJson(res3.getBody().toString(), new TypeToken<ArrayList<Mesa>>(){}.getType());
+        arrMesas.clear();
+        mesas.forEach(mesa -> {
+            arrMesas.add(mesa);
+        });
     }
 
     @Override
@@ -106,13 +143,16 @@ public class MainScreen extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menudeletereserva, menu);
+        inflater.inflate(R.menu.menucreatereserva, menu);
     }
 
     public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
-            case R.id.menudeletereservaitem1:
-                Toast.makeText(getApplicationContext(), "Funciona, pero hay que hacer el code crack", Toast.LENGTH_SHORT).show();
+            case R.id.menucreatereservaitem1:
+                Intent it = new Intent(getApplicationContext(), CrearReserva.class);
+                it.putExtra("info", (Parcelable) info);
+                startActivity(it);
                 return true;
             default:
                 return super.onContextItemSelected(item);

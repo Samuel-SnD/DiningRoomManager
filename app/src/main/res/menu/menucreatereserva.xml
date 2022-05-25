@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.diningroommanager.Reservas">
+    tools:context="com.example.diningroommanager.MainScreen">
 
     <item
-        android:id="@+id/menudeletereservaitem1"
-        android:title="@string/eliminar_reserva"
+        android:id="@+id/menucreatereservaitem1"
+        android:title="@string/crear_reserva"
         app:showAsAction="never"/>
 
 </menu>

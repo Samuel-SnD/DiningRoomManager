@@ -49,5 +49,11 @@
     <string name="crear_nueva_mesa">Crear nueva mesa</string>
     <string name="eliminar_mesa">Eliminar mesa</string>
     <string name="menu">Menu</string>
+    <string name="crear_reserva">Crear reserva</string>
+    <string name="buscar">Buscar</string>
+    <string name="mesa">Mesa:</string>
+    <string name="asientos">Asientos:</string>
+    <string name="day">Día: </string>
+    <string name="hora">Hora: </string>
 
 </resources>

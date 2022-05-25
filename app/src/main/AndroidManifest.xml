@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiningRoomManager">
         <activity
+            android:name=".CrearReserva"
+            android:exported="false" />
+        <activity
             android:name=".CrearMesa"
             android:exported="false" />
         <activity
