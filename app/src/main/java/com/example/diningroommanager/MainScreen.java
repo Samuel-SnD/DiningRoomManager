@@ -148,10 +148,12 @@ public class MainScreen extends AppCompatActivity {
 
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int listPosition = info.position;
         switch (item.getItemId()) {
             case R.id.menucreatereservaitem1:
                 Intent it = new Intent(getApplicationContext(), CrearReserva.class);
-                it.putExtra("info", (Parcelable) info);
+                it.putExtra("array", arrMesas);
+                it.putExtra("posicion", listPosition);
                 startActivity(it);
                 return true;
             default:
