@@ -1,7 +1,5 @@
 package com.example.diningroommanager.mapping;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
@@ -10,14 +8,13 @@ public class Usuario implements Serializable {
     String correo;
     int id;
 
-    @SerializedName("is_Admin")
-    int isAdmin;
+    int is_Admin;
 
     public Usuario(String nombre, String apellidos, String correo, int isAdmin) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
-        this.isAdmin = isAdmin;
+        this.is_Admin = isAdmin;
     }
 
     public Usuario() {
@@ -56,10 +53,10 @@ public class Usuario implements Serializable {
     }
 
     public int getIsAdmin() {
-        return isAdmin;
+        return is_Admin;
     }
 
     public void setIsAdmin(int isAdmin) {
-        this.isAdmin = isAdmin;
+        this.is_Admin = isAdmin;
     }
 }

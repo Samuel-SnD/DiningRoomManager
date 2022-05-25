@@ -5,10 +5,12 @@ import java.io.Serializable;
 public class ReservaCreate implements Serializable {
     int mesa;
     String fecha;
+    String hora;
 
-    public ReservaCreate(int mesa, String fecha) {
+    public ReservaCreate(int mesa, String fecha, String hora) {
         this.mesa = mesa;
         this.fecha = fecha;
+        this.hora = hora;
     }
 
     public ReservaCreate() {
@@ -28,5 +30,13 @@ public class ReservaCreate implements Serializable {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 }

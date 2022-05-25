@@ -5,11 +5,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.provider.CalendarContract;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,21 +16,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diningroommanager.mapping.Comedor;
 import com.example.diningroommanager.mapping.Mesa;
-import com.example.diningroommanager.mapping.Token;
 import com.example.diningroommanager.mapping.Usuario;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
@@ -57,6 +46,7 @@ public class MainScreen extends AppCompatActivity {
                 .header("accept", "Application/json")
                 .asJson();
         user = new Gson().fromJson(res.getBody().toString(), Usuario.class);
+        Toast.makeText(getApplicationContext(), "" + user.getIsAdmin(), Toast.LENGTH_SHORT).show();
 
         HttpResponse res2 = Unirest.get("http://diningroommanager.live:8000/comedores")
                 .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())

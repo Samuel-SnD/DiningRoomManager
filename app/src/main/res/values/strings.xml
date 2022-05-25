@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">DiningRoomManager</string>
     <string name="e_mail"><![CDATA[E-Mail]]></string>
     <string name="et_email">Introduce tu email</string>
@@ -53,7 +53,8 @@
     <string name="buscar">Buscar</string>
     <string name="mesa">Mesa:</string>
     <string name="asientos">Asientos:</string>
-    <string name="day">Día: </string>
-    <string name="hora">Hora: </string>
+    <string name="day" tools:ignore="TypographyDashes">Día: (2022-05-25)</string>
+    <string name="hora">Hora: (00:00)</string>
+    <string name="reservar">Reservar</string>
 
 </resources>
