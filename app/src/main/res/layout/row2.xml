@@ -5,7 +5,7 @@
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/tvMesaRow"
+        android:id="@+id/tvReservaRow2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -13,7 +13,7 @@
         android:text="@string/mesa"/>
 
     <TextView
-        android:id="@+id/tvId"
+        android:id="@+id/tvIdMesaRow2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,26 +21,44 @@
         android:layout_marginTop="8dp"
         android:maxLines="1"
         android:textSize="20sp"
-        android:layout_toEndOf="@+id/tvMesaRow"/>
+        android:layout_toEndOf="@+id/tvReservaRow2"/>
 
     <TextView
-        android:id="@+id/tvAsientosRow"
+        android:id="@+id/tvFechaRow2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/asientos"
+        android:text="@string/dayrow2"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/tvId"/>
+        android:layout_toEndOf="@+id/tvIdMesaRow2"/>
 
     <TextView
-        android:id="@+id/tvAsientos"
+        android:id="@+id/tvDiaRow2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/tvAsientosRow"
+        android:layout_toEndOf="@+id/tvFechaRow2"
         android:maxLines="1"
         android:textSize="20sp"/>
 
+    <TextView
+        android:id="@+id/tvHora1Row2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/horaRow2"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/tvDiaRow2"/>
+
+    <TextView
+        android:id="@+id/tvHora2Row2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/tvHora1Row2"
+        android:maxLines="1"
+        android:textSize="20sp"/>
 
 </RelativeLayout>

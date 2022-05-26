@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Reserva implements Serializable {
     int mesa;
     String fecha;
+    String hora;
     int id;
     int usuario;
 
@@ -47,5 +48,13 @@ public class Reserva implements Serializable {
 
     public void setUsuario(int usuario) {
         this.usuario = usuario;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 }

@@ -9,4 +9,9 @@
         android:title="@string/crear_reserva"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/menucreatereservaitem2"
+        android:title="@string/eliminar_mesa"
+        app:showAsAction="never"/>
+
 </menu>

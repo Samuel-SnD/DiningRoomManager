@@ -31,10 +31,11 @@ import unirest.shaded.com.google.gson.Gson;
 public class MainScreen extends AppCompatActivity {
 
     static Comedor currentComedor = new Comedor();
-    Usuario user;
+    static Usuario user;
     ArrayList <String> comedoresId = new ArrayList <String> ();
     static ArrayList <Mesa> arrMesas = new ArrayList <Mesa> ();
     static Spinner spinner;
+    static ListView lvmainScreen;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -46,7 +47,6 @@ public class MainScreen extends AppCompatActivity {
                 .header("accept", "Application/json")
                 .asJson();
         user = new Gson().fromJson(res.getBody().toString(), Usuario.class);
-        Toast.makeText(getApplicationContext(), "" + user.getIsAdmin(), Toast.LENGTH_SHORT).show();
 
         HttpResponse res2 = Unirest.get("http://diningroommanager.live:8000/comedores")
                 .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
@@ -63,7 +63,7 @@ public class MainScreen extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        ListView lvmainScreen = findViewById(R.id.lvmainScreen);
+        lvmainScreen = findViewById(R.id.lvmainScreen);
         ListAdapter lAdapter = new ListAdapter(getApplicationContext(), arrMesas);
         lvmainScreen.setAdapter(lAdapter);
         registerForContextMenu(lvmainScreen);
@@ -136,6 +136,7 @@ public class MainScreen extends AppCompatActivity {
         inflater.inflate(R.menu.menucreatereserva, menu);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int listPosition = info.position;
@@ -146,6 +147,23 @@ public class MainScreen extends AppCompatActivity {
                 it.putExtra("posicion", listPosition);
                 startActivity(it);
                 return true;
+            case R.id.menucreatereservaitem2:
+                if (user.getIsAdmin() == 1) {
+                    int mesa = arrMesas.get(listPosition).getId();
+                    HttpResponse res = Unirest.delete("http://diningroommanager.live:8000/mesas/" + mesa)
+                            .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                            .header("accept", "Application/json")
+                            .asJson();
+                    if (res.getStatus() == 409) {
+                        Toast.makeText(getApplicationContext(), "No se pueden eliminar mesas que contengan reservas", Toast.LENGTH_SHORT).show();
+                    } else if (res.getStatus() == 200) {
+                        Toast.makeText(getApplicationContext(), "Mesa eliminada", Toast.LENGTH_SHORT).show();
+                        lvmainScreen.invalidateViews();
+                        updateArrayMesas();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Solo los administradores pueden realizar esa accíon", Toast.LENGTH_SHORT).show();
+                } return true;
             default:
                 return super.onContextItemSelected(item);
         }
