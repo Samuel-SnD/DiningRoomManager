@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -25,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 
 import kong.unirest.HttpResponse;
+import kong.unirest.RawResponse;
 import kong.unirest.Unirest;
 import unirest.shaded.com.google.gson.Gson;
 
@@ -68,7 +70,7 @@ public class Reservas extends AppCompatActivity {
 
         HttpResponse res3 = Unirest.get("http://diningroommanager.live:8000/reservas/user/" + user.getId())
                 .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
-                .header("accept", "Application/json")
+                .header("accept", "application/json")
                 .asJson();
 
         ArrayList<Reserva> arrreservas = new Gson().fromJson(res3.getBody().toString(), new TypeToken<ArrayList<Reserva>>(){}.getType());
@@ -95,7 +97,7 @@ public class Reservas extends AppCompatActivity {
                     int reserva = reservas.get(listPosition).getId();
                     HttpResponse res = Unirest.delete("http://diningroommanager.live:8000/reservas/" + reserva)
                             .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
-                            .header("accept", "Application/json")
+                            .header("accept", "application/json")
                             .asJson();
                      if (res.getStatus() == 200) {
                         Toast.makeText(getApplicationContext(), "Reserva eliminada", Toast.LENGTH_SHORT).show();
@@ -105,6 +107,11 @@ public class Reservas extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Solo los administradores pueden realizar esa accíon", Toast.LENGTH_SHORT).show();
                 } return true;
+            case R.id.menudeletereservaitem2:
+                String url = "http://diningroommanager.live:8000/reservas/" + reservas.get(listPosition).getId() + "/pdf";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
             default:
                 return super.onContextItemSelected(item);
         }

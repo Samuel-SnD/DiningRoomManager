@@ -59,5 +59,8 @@
     <string name="alerta_covid">Alerta Covid</string>
     <string name="dayrow2">Dia: </string>
     <string name="horaRow2">Hora: </string>
+    <string name="idComedor">Id del comedor:</string>
+    <string name="crear_mesa">Crear mesa</string>
+    <string name="generar_pdf">Generar pdf</string>
 
 </resources>
