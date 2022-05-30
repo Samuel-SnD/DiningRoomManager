@@ -2,9 +2,12 @@ package com.example.diningroommanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,9 +38,11 @@ public class LogIn extends AppCompatActivity {
                         .asJson();
                 if (res.getStatus() == 200) {
                     Token tk = new Gson().fromJson(res.getBody().toString(), Token.class);
-                    Session.getInstance().tk = tk;
+                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("Token", tk.getAccessToken());
+                    editor.commit();
                     Intent it = new Intent(getApplicationContext(), MainScreen.class);
-                    it.putExtra("Token", tk);
                     startActivity(it);
                 } else {
                     Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();

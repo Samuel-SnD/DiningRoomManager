@@ -5,8 +5,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,26 +34,32 @@ import unirest.shaded.com.google.gson.Gson;
 
 public class MainScreen extends AppCompatActivity {
 
+    SharedPreferences sharedPref;
     static Comedor currentComedor = new Comedor();
     static Usuario user;
     ArrayList <String> comedoresId = new ArrayList <String> ();
     static ArrayList <Mesa> arrMesas = new ArrayList <Mesa> ();
     static Spinner spinner;
     static ListView lvmainScreen;
+    Boolean isNew = true;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         HttpResponse res = Unirest.get("http://diningroommanager.live:8000/users/me")
-                .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                 .header("accept", "Application/json")
                 .asJson();
         user = new Gson().fromJson(res.getBody().toString(), Usuario.class);
+        Session.getInstance().user = user;
 
         HttpResponse res2 = Unirest.get("http://diningroommanager.live:8000/comedores")
-                .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                 .header("accept", "Application/json")
                 .asJson();
 
@@ -101,7 +110,7 @@ public class MainScreen extends AppCompatActivity {
         currentComedor.setId(Integer.parseInt(spinner.getSelectedItem().toString().substring(9)));
 
         HttpResponse res3 = Unirest.get("http://diningroommanager.live:8000/mesas/")
-                .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                 .header("accept", "Application/json")
                 .queryString("comedor_id", currentComedor.getId())
                 .asJson();
@@ -162,7 +171,7 @@ public class MainScreen extends AppCompatActivity {
                 if (user.getIsAdmin() == 1) {
                     int mesa = arrMesas.get(listPosition).getId();
                     HttpResponse res = Unirest.delete("http://diningroommanager.live:8000/mesas/" + mesa)
-                            .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                            .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                             .header("accept", "Application/json")
                             .asJson();
                     if (res.getStatus() == 409) {
@@ -180,4 +189,17 @@ public class MainScreen extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!isNew) {
+            lvmainScreen.invalidateViews();
+            updateArrayMesas();
+            finish();
+            Intent it = new Intent(getApplicationContext(), MainScreen.class);
+            startActivity(it);
+        }
+        isNew = false;
+    }
 }

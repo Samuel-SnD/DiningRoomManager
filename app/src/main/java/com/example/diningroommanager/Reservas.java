@@ -4,10 +4,13 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +38,7 @@ public class Reservas extends AppCompatActivity {
     Usuario user = MainScreen.user;
     static ArrayList <Reserva> reservas = new ArrayList <Reserva> ();
     static ListView lvReservas;
+    SharedPreferences sharedPref;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
@@ -42,19 +46,11 @@ public class Reservas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservas);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         TextView tvNombre = findViewById(R.id.tvUsuarioReserva);
-        Button btnVolver = findViewById(R.id.btnVolverReservasUsuario);
 
         tvNombre.setText("Reservas de " + user.getNombre());
-
-        btnVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(getApplicationContext(), MainScreen.class);
-                startActivity(it);
-            }
-        });
 
         lvReservas = findViewById(R.id.lvReservas);
         ListAdapter2 lAdapter = new ListAdapter2(getApplicationContext(), reservas);
@@ -67,9 +63,8 @@ public class Reservas extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void updateArrayReservas () {
-
         HttpResponse res3 = Unirest.get("http://diningroommanager.live:8000/reservas/user/" + user.getId())
-                .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                 .header("accept", "application/json")
                 .asJson();
 
@@ -96,7 +91,7 @@ public class Reservas extends AppCompatActivity {
                 if (user.getIsAdmin() == 1) {
                     int reserva = reservas.get(listPosition).getId();
                     HttpResponse res = Unirest.delete("http://diningroommanager.live:8000/reservas/" + reserva)
-                            .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                            .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                             .header("accept", "application/json")
                             .asJson();
                      if (res.getStatus() == 200) {

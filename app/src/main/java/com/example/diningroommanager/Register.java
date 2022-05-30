@@ -35,7 +35,6 @@ public class Register extends AppCompatActivity {
         EditText usuario = findViewById(R.id.etnombre);
         EditText apellidos = findViewById(R.id.etapellidos);
         Button btnRegister = findViewById(R.id.btnRegister2);
-        Button btnVolver = findViewById(R.id.btnVolver);
         CheckBox cbCredentials = findViewById(R.id.cbacceptcredentials);
         TextView tvCredentials = findViewById(R.id.tvacceptcredentials);
 
@@ -80,11 +79,6 @@ public class Register extends AppCompatActivity {
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             };
-        });
-
-        btnVolver.setOnClickListener(v -> {
-            Intent it = new Intent(getApplicationContext(), LogIn.class);
-            startActivity(it);
         });
     }
 }

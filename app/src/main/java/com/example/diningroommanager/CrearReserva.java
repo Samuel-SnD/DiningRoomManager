@@ -2,8 +2,11 @@ package com.example.diningroommanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,30 +25,23 @@ import kong.unirest.Unirest;
 public class CrearReserva extends AppCompatActivity {
 
 
+    SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_reserva);
-
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         TextView mesa = findViewById(R.id.tvMesaActual);
         EditText etDay = findViewById(R.id.etDay);
         EditText etHour = findViewById(R.id.etHour);
         Button btnReserva = findViewById(R.id.btnHacerReserva);
-        Button btnVolver = findViewById(R.id.btnVolverReserva);
         Intent it = getIntent();
         int position = it.getIntExtra("posicion", 0);
         ArrayList <Mesa> arrMesas = (ArrayList<Mesa>) it.getSerializableExtra("array");
         String placeHolder = "Mesa: " + arrMesas.get(position).getId();
         mesa.setText(placeHolder);
-
-        btnVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(getApplicationContext(), MainScreen.class);
-                startActivity(it);
-            }
-        });
 
         btnReserva.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +49,7 @@ public class CrearReserva extends AppCompatActivity {
                 ReservaCreate reserva = new ReservaCreate(arrMesas.get(position).getId(), etDay.getText().toString().substring(0, 10), etHour.getText().toString().substring(0, 5));
 
                 HttpResponse res = Unirest.post("http://diningroommanager.live:8000/reservas")
-                        .header("Authorization", "Bearer " + Session.getInstance().tk.getAccessToken())
+                        .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                         .header("Content-Type","application/json")
                         .header("accept", "Application/json")
                         .body(new Gson().toJson(reserva))

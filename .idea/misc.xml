@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/layout/activity_crear_menu.xml" value="0.3625" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/layout/activity_crear_mesa.xml" value="0.3625" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/layout/activity_crear_reserva.xml" value="0.3625" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
@@ -16,7 +17,9 @@
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/layout/row2.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/layout/row23.xml" value="0.3625" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/layout/row3.xml" value="0.3625" />
+        <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/menu/menucreatemenu.xml" value="0.3625" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/menu/menucreatereserva.xml" value="0.3625" />
+        <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/menu/menudeletemenu.xml" value="0.3625" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/menu/menudeletereserva.xml" value="0.3625" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/menu/menumoreoptions.xml" value="0.3625" />
         <entry key="..\:/Users/Samu/AndroidStudioProjects/DiningRoomManager/app/src/main/res/menu/menureservas.xml" value="0.3625" />
