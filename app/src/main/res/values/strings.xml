@@ -62,5 +62,7 @@
     <string name="idComedor">Id del comedor:</string>
     <string name="crear_mesa">Crear mesa</string>
     <string name="generar_pdf">Generar pdf</string>
+    <string name="platos">Platos:</string>
+    <string name="bebidas">Bebidas:</string>
 
 </resources>
