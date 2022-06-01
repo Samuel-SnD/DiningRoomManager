@@ -62,7 +62,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         listView = findViewById(R.id.lvMenu);
-        ListAdapter3 lAdapter = new ListAdapter3(getApplicationContext(), menus);
+        ListAdapter3 lAdapter = new ListAdapter3(this, menus);
         listView.setAdapter(lAdapter);
         registerForContextMenu(listView);
 
@@ -93,7 +93,7 @@ public class MenuActivity extends AppCompatActivity {
             menu.setBebidas(bebidaspretty.substring(0, bebidaspretty.length() - 2));
             arrMenus.add(menu);
         });
-        ListAdapter3 lAdapter = new ListAdapter3(getApplicationContext(), arrMenus);
+        ListAdapter3 lAdapter = new ListAdapter3(this, arrMenus);
         listView.setAdapter(lAdapter);
         registerForContextMenu(listView);
     }

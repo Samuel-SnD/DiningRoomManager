@@ -74,7 +74,7 @@ public class MainScreen extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         lvmainScreen = findViewById(R.id.lvmainScreen);
-        ListAdapter lAdapter = new ListAdapter(getApplicationContext(), arrMesas);
+        ListAdapter lAdapter = new ListAdapter(this, arrMesas);
         lvmainScreen.setAdapter(lAdapter);
         registerForContextMenu(lvmainScreen);
 

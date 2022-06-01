@@ -53,7 +53,7 @@ public class Reservas extends AppCompatActivity {
         tvNombre.setText("Reservas de " + user.getNombre());
 
         lvReservas = findViewById(R.id.lvReservas);
-        ListAdapter2 lAdapter = new ListAdapter2(getApplicationContext(), reservas);
+        ListAdapter2 lAdapter = new ListAdapter2(this, reservas);
         lvReservas.setAdapter(lAdapter);
         registerForContextMenu(lvReservas);
 
