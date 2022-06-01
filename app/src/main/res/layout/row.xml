@@ -4,43 +4,47 @@
     android:layout_height="match_parent"
     android:padding="8dp">
 
-    <TextView
-        android:id="@+id/tvMesaRow"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/mesa"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="15dp">
 
-    <TextView
-        android:id="@+id/tvId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:maxLines="1"
-        android:textSize="20sp"
-        android:layout_toEndOf="@+id/tvMesaRow"/>
+        <TextView
+            android:id="@+id/tvMesaRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/mesa"/>
 
-    <TextView
-        android:id="@+id/tvAsientosRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/asientos"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/tvId"/>
+        <TextView
+            android:id="@+id/tvId"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/tvAsientos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/tvAsientosRow"
-        android:maxLines="1"
-        android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/tvAsientosRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/asientos"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"/>
 
+        <TextView
+            android:id="@+id/tvAsientos"
+            android:minWidth="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

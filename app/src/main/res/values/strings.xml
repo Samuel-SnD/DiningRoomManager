@@ -62,12 +62,12 @@
     <string name="idComedor">Id del comedor:</string>
     <string name="crear_mesa">Crear mesa</string>
     <string name="generar_pdf">Generar pdf</string>
-    <string name="platos">Platos:</string>
-    <string name="bebidas">Bebidas:</string>
+    <string name="platos">Platos</string>
+    <string name="bebidas">Bebidas</string>
     <string name="crear_menu">Crear Menu</string>
     <string name="eliminar_menu">Eliminar Menu</string>
-    <string name="nombre_menu">Nombre del menú: (numérico)</string>
-    <string name="tvplatos">Platos: ([\'ejemplo\', \'ejemplo2\'])</string>
-    <string name="tvbebidas">Bebidas: ([\'ejemplo\', \'ejemplo2\'])</string>
+    <string name="nombre_menu">Número del menú:</string>
+    <string name="tvplatos">Platos: (ejemplo, ejemplo2)</string>
+    <string name="tvbebidas">Bebidas: (ejemplo, ejemplo2)</string>
 
 </resources>

@@ -6,40 +6,47 @@
 
     <TextView
         android:id="@+id/tvMenuRow1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
-        android:text="@string/platos"/>
+        android:text="@string/platos"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/tvMenuRow2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="38dp"
         android:maxLines="1"
         android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"
         android:layout_below="@+id/tvMenuRow1"/>
 
     <TextView
         android:id="@+id/tvmenuRow3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/bebidas"
+        android:textSize="20sp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="28dp"
+        android:textAlignment="center"
         android:layout_below="@+id/tvMenuRow2"/>
 
     <TextView
         android:id="@+id/tvmenuRow4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:layout_below="@+id/tvmenuRow3"
         android:maxLines="1"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textAlignment="center"/>
 
 </RelativeLayout>

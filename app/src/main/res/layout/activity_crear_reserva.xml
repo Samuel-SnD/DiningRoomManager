@@ -14,35 +14,38 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"/>
 
-    <TextView
-        android:id="@+id/tvDia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/day"
-        android:textSize="25sp"
-        android:layout_marginTop="20dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:imeOptions="actionNext"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/day"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"/>
 
-    <TextView
-        android:id="@+id/tvHora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hora"
-        android:textSize="25sp"
-        android:layout_marginTop="40dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/etHour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="datetime"
-        android:imeOptions="actionDone"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hora"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="180dp"

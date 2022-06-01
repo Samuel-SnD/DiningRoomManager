@@ -39,7 +39,9 @@ public class CrearMenu extends AppCompatActivity {
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MenuCreate menu = new MenuCreate(Integer.parseInt(etNombre.getText().toString()), etPlatos.getText().toString(), etBebidas.getText().toString(), Integer.parseInt(etIdComedor.getText().toString()));
+                String platos = new Gson().toJson(etPlatos.getText().toString().split(",( ?)*"));
+                String bebidas = new Gson().toJson(etBebidas.getText().toString().split(",( ?)*"));
+                MenuCreate menu = new MenuCreate(Integer.parseInt(etNombre.getText().toString()), platos, bebidas, Integer.parseInt(etIdComedor.getText().toString()));
                 HttpResponse res = Unirest.post("http://diningroommanager.live:8000/menus")
                         .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                         .header("Content-Type","application/json")

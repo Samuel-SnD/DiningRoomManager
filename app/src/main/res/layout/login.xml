@@ -8,40 +8,38 @@
     android:orientation="vertical"
     android:gravity="center_vertical|center_horizontal">
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvemail"
-        android:text="@string/e_mail"
-        android:textAlignment="center"
-        android:layout_marginBottom="10dp"/>
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etemail"
-        android:textAlignment="center"
-        android:hint="@string/et_email"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="20dp"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/e_mail"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvpasswd"
-        android:text="@string/passwd"
-        android:textAlignment="center"
-        android:imeOptions="actionNext"
-        android:layout_marginBottom="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etpasswd"
-        android:textAlignment="center"
-        android:inputType="textPassword"
-        android:imeOptions="actionDone"
-        android:hint="@string/etpasswd"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etpasswd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/passwd"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="180dp"
