@@ -30,6 +30,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
+        // Declaración de variables
         EditText email = findViewById(R.id.etemail2);
         EditText password = findViewById(R.id.etpasswd2);
         EditText usuario = findViewById(R.id.etnombre);
@@ -38,6 +39,9 @@ public class Register extends AppCompatActivity {
         CheckBox cbCredentials = findViewById(R.id.cbacceptcredentials);
         TextView tvCredentials = findViewById(R.id.tvacceptcredentials);
 
+        // Mediante el uso de SpannableString y clickableSpan hago que el texto de la textView
+        // se pueda clickar, y en caso de que se haga genera un diálogo que muestra
+        // los términos y condiciones de la aplicación
         String cb = "He leído y acepto los términos y condiciones";
         SpannableString ss = new SpannableString(cb);
         ClickableSpan cs = new ClickableSpan() {
@@ -57,6 +61,9 @@ public class Register extends AppCompatActivity {
         tvCredentials.setText(ss);
         tvCredentials.setMovementMethod(LinkMovementMethod.getInstance());
 
+        // Si se aprieta el botón de registro se comprueba que los términos hayan sido aceptados
+        // En caso de que hayan sido aceptados se realiza una petición a la API para crear
+        // el usuario con las credenciales presentadas.
         btnRegister.setOnClickListener(v -> {
             try {
                 if (cbCredentials.isChecked()) {

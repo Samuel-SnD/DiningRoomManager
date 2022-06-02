@@ -10,6 +10,7 @@ import com.example.diningroommanager.mapping.Menu;
 
 import java.util.ArrayList;
 
+// Clase de adaptador para las filas de los menús
 public class ListAdapter3 extends BaseAdapter {
 
     Context context;
@@ -38,6 +39,8 @@ public class ListAdapter3 extends BaseAdapter {
         TextView bebidas;
     }
 
+    // Creo un nuevo viewHolder y un inflater, inflo la fila y establezco los datos necesarios
+    // en el viewHolder para establecerlo más tarde como tag
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ListAdapter3.ViewHolder viewHolder;

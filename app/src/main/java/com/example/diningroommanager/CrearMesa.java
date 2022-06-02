@@ -27,11 +27,17 @@ public class CrearMesa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_mesa);
+
+        // recupero las sharedPreferences
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        // Declaración de variables
         EditText etAsientos = findViewById(R.id.etAsientos);
         EditText etIdComedor = findViewById(R.id.etidComedorMesa);
         Button btnCrearMesa = findViewById(R.id.btnCrearMesa);
 
+        // En caso de apretar el botón de crear mesa se realiza una petición a la API para crearla
+        // con los datos proporcionados
         btnCrearMesa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

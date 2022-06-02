@@ -24,25 +24,32 @@ import kong.unirest.Unirest;
 
 public class CrearReserva extends AppCompatActivity {
 
-
     SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_reserva);
+
+        // Recupero las sharedPreferences
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        // Declaración de variables
         TextView mesa = findViewById(R.id.tvMesaActual);
         EditText etDay = findViewById(R.id.etDay);
         EditText etHour = findViewById(R.id.etHour);
         Button btnReserva = findViewById(R.id.btnHacerReserva);
+
+        // Recogo el intent y creo un arraylist con las mesas y actualizo el texto de la textView de la mesa
         Intent it = getIntent();
         int position = it.getIntExtra("posicion", 0);
         ArrayList <Mesa> arrMesas = (ArrayList<Mesa>) it.getSerializableExtra("array");
         String placeHolder = "Mesa: " + arrMesas.get(position).getId();
         mesa.setText(placeHolder);
 
+
+        // En caso de apretar el botón de crear una reserva, se realiza una petición a la API
+        // que crea la reserva con los datos proporcionados
         btnReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

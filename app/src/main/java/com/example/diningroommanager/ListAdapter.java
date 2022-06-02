@@ -6,11 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import com.example.diningroommanager.mapping.Mesa;
-
 import java.util.ArrayList;
 
+// Clase de adaptador para las filas de las mesas de la MainScreen
 public class ListAdapter extends BaseAdapter {
 
     Context context;
@@ -39,6 +38,8 @@ public class ListAdapter extends BaseAdapter {
         TextView asientos;
     }
 
+    // Creo un nuevo viewHolder y un inflater, inflo la fila y establezco los datos necesarios
+    // en el viewHolder para establecerlo más tarde como tag
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;

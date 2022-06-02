@@ -27,7 +27,11 @@ public class CrearMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_menu);
+
+        // Recupero las sharedPreferences
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        // Declaración de variables
         Button btnCrear = findViewById(R.id.btnCrearMenu);
         EditText etNombre = findViewById(R.id.etNombreMenu);
         EditText etPlatos = findViewById(R.id.etPlatosMenu);
@@ -36,6 +40,9 @@ public class CrearMenu extends AppCompatActivity {
         Intent it = getIntent();
         comedor = it.getStringExtra("comedor");
 
+
+        // En caso de apretar el botón de crear menú realiza una petición a la API para crearlo
+        // con los datos proporcionados
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

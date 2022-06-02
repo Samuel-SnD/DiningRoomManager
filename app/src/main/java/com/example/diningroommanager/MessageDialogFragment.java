@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 public class MessageDialogFragment extends DialogFragment {
 
+    // Clase para crear un diálogo para los términos y condiciones
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         String termsAndConditions = getResources().getString(R.string.termsAndConditions);

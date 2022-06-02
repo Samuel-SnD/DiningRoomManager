@@ -31,9 +31,9 @@ import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
 
+    // Declaración de variables
     Usuario user;
     ListView listView;
-    ArrayList<String> menusId = new ArrayList <> ();
     int comedor;
     ArrayList <Menu> arrMenus = new ArrayList <Menu> ();
     SharedPreferences sharedPref;
@@ -44,31 +44,37 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        // Necesario para no recibir una Network exception
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        // Recupero el usuario, el comedor y las sharedPreferences
         user = Utils.getUsuario(this);
         Intent it = getIntent();
         comedor = Integer.parseInt(it.getStringExtra("comedor"));
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        // Realizo una petición a la API para recuperar una lsita de los menus
         HttpResponse res = Unirest.get("http://diningroommanager.live:8000/comedor/" + comedor + "/menus")
                 .header("Authorization", "Bearer " + sharedPref.getString("Token", ""))
                 .header("accept", "Application/json")
                 .asJson();
 
         ArrayList <Menu> menus = new Gson().fromJson(res.getBody().toString(), new TypeToken<ArrayList<Menu>>(){}.getType());
-        menus.forEach(menu -> {
-            menusId.add("Menu: " + menu.getId());
-        });
 
+        // Creo un adapter para la listView y lo establezco, también la registro para el contextMenu
         listView = findViewById(R.id.lvMenu);
         ListAdapter3 lAdapter = new ListAdapter3(this, menus);
         listView.setAdapter(lAdapter);
         registerForContextMenu(listView);
 
+        // Actualizo el array de menus con los que existan en ese momento
         updateArrayMenus();
     }
 
+    // Método que actualiza los menus actuales realizando una petición a la API
+    // También parseo las strings que recibo a jsons para poder agregarlo a la base de datos
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void updateArrayMenus () {
         HttpResponse res2 = Unirest.get("http://diningroommanager.live:8000/comedor/" + comedor + "/menus")
@@ -93,11 +99,14 @@ public class MenuActivity extends AppCompatActivity {
             menu.setBebidas(bebidaspretty.substring(0, bebidaspretty.length() - 2));
             arrMenus.add(menu);
         });
+
+        // Creo un adapter para la listView y lo establezco, también la registro para el contextMenu
         ListAdapter3 lAdapter = new ListAdapter3(this, arrMenus);
         listView.setAdapter(lAdapter);
         registerForContextMenu(listView);
     }
 
+    // Estos dos métodos crean un menú de opciones
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -108,6 +117,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            // Si el usuario es administrador se hace un intent a la activity pàra crear menús
             case R.id.menucreatemenu1:
                 if (user.getIsAdmin() == 1) {
                     Intent it = new Intent(getApplicationContext(), CrearMenu.class);
@@ -122,6 +132,7 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    // Estos dos métodos crean un menú contextual
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -134,6 +145,8 @@ public class MenuActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int listPosition = info.position;
         switch (item.getItemId()) {
+            // Si el usuario es administrador se hace una petición a la API para eliminar el menú
+            // seleccionado y actualizar la listView
             case R.id.menudeletemenu1:
                 if (user.getIsAdmin() == 1) {
                     int menu = arrMenus.get(listPosition).getId();
@@ -157,6 +170,8 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    // En el resume hago otra vez una actualización de la listview en caso de que no sea la primera
+    // vez que se abre la activity
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onResume() {

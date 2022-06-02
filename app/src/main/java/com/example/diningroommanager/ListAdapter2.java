@@ -11,6 +11,7 @@ import com.example.diningroommanager.mapping.Reserva;
 
 import java.util.ArrayList;
 
+// Clase de adaptador para las filas de las reservas
 public class ListAdapter2 extends BaseAdapter {
 
     Context context;
@@ -40,6 +41,8 @@ public class ListAdapter2 extends BaseAdapter {
         TextView hour;
     }
 
+    // Creo un nuevo viewHolder y un inflater, inflo la fila y establezco los datos necesarios
+    // en el viewHolder para establecerlo más tarde como tag
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ListAdapter2.ViewHolder viewHolder;

@@ -2,6 +2,7 @@ package com.example.diningroommanager;
 
 import com.example.diningroommanager.mapping.Usuario;
 
+// Singletone para mantener el usuario
 public class Session {
     Usuario user;
     private static Session instance;

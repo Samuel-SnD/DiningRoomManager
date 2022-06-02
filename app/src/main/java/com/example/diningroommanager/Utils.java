@@ -13,6 +13,7 @@ import unirest.shaded.com.google.gson.Gson;
 
 public class Utils {
 
+    // Clase de utilidades, usada exclusivamente en este momento para acceder al usuario actual
     public static Usuario getUsuario (AppCompatActivity activity) {
         Usuario user;
         try {

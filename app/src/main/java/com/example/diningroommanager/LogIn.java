@@ -23,12 +23,18 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        // Necesario para no recibir una Network exception
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        // Declaración de variables
         EditText email = findViewById(R.id.etemail);
         EditText password = findViewById(R.id.etpasswd);
         Button btnLogin = findViewById(R.id.btnLogin);
+
+        // Si se aprieta el botón de LogIn realiza una petición a la API con el usuario
+        // Una vez accede mete el token en las sharedPreferences
+        // Después de esto hace un intent a MainScreen
         btnLogin.setOnClickListener(v -> {
             try {
                 HttpResponse res = Unirest.post("http://diningroommanager.live:8000/token")
@@ -52,6 +58,7 @@ public class LogIn extends AppCompatActivity {
             };
         });
 
+        // Si se aprieta el botón de registro hace un intent a la activity Register
         Button btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(v -> {
             Intent it = new Intent(getApplicationContext(), Register.class);

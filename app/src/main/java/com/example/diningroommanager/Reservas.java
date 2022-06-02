@@ -35,6 +35,7 @@ import unirest.shaded.com.google.gson.Gson;
 
 public class Reservas extends AppCompatActivity {
 
+    // Declaración de variables
     Usuario user = MainScreen.user;
     static ArrayList <Reserva> reservas = new ArrayList <Reserva> ();
     static ListView lvReservas;
@@ -46,21 +47,25 @@ public class Reservas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservas);
+
+        // Recuperación las sharedPreferences y de la textView del nombre del usuario
+        // para hacer que aparezca el nombre del mismo en la activity
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
         TextView tvNombre = findViewById(R.id.tvUsuarioReserva);
-
         tvNombre.setText("Reservas de " + user.getNombre());
 
+        // Creo un adapter para la listView y lo establezco, también la registro para el contextMenu
         lvReservas = findViewById(R.id.lvReservas);
         ListAdapter2 lAdapter = new ListAdapter2(this, reservas);
         lvReservas.setAdapter(lAdapter);
         registerForContextMenu(lvReservas);
 
+        // Actualizo el array de reservas con las que existan en ese momento
         updateArrayReservas();
 
     }
 
+    // Método que actualiza las reservas actuales realizando una petición a la API
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void updateArrayReservas () {
         HttpResponse res3 = Unirest.get("http://diningroommanager.live:8000/reservas/user/" + user.getId())
@@ -75,6 +80,7 @@ public class Reservas extends AppCompatActivity {
         });
     }
 
+    // Estos dos métodos crean un menú contextual
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -87,6 +93,7 @@ public class Reservas extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int listPosition = info.position;
         switch (item.getItemId()) {
+            // Si el usuario es administrador, borro la reserva seleccionada mediante una petición a la API
             case R.id.menudeletereservaitem1:
                 if (user.getIsAdmin() == 1) {
                     int reserva = reservas.get(listPosition).getId();
@@ -102,6 +109,8 @@ public class Reservas extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Solo los administradores pueden realizar esa accíon", Toast.LENGTH_SHORT).show();
                 } return true;
+            // Si el usuario quiere descargar un pdf de la reserva se redirige al navegador con la
+            // url de descarga del mismo
             case R.id.menudeletereservaitem2:
                 String url = "http://diningroommanager.live:8000/reservas/" + reservas.get(listPosition).getId() + "/pdf";
                 Intent i = new Intent(Intent.ACTION_VIEW);
